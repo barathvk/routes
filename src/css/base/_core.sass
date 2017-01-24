@@ -1,0 +1,73 @@
+$gray: #f5f8fa
+$blue: #137cbd
+$yellow: #E8F9B6
+$primary: #5c7080
+$default-border-color: darken($gray, 10)
+$default-border: 1px solid $default-border-color
+$transition: all 0.3s ease-in-out
+html, body
+  padding: 0
+  margin: 0
+  width: 100%
+  height: 100%
+  display: flex
+  flex-direction: column
+  flex: 1
+  font-family: Roboto, Open Sans
+  background-color: $gray
+  color: $primary
+  transition: $transition
+  overflow: hidden
+.flex-column
+  display: flex
+  flex-direction: column
+.flex-row
+  display: flex
+  flex-direction: row
+.fill
+  flex: 1
+.flex-center-align
+  align-items: center
+.flex-center
+  justify-content: center
+  align-items: center
+h1, h2, h3, h4, h5, h6
+  margin: 0
+  padding: 0
+  font-weight: 200
+  color: $primary
+.error
+  font-size: 3em
+  .pt-icon-standard
+    font-size: 1em
+.animated
+  animation-duration: 0.3s
+.border-left
+  border-left: $default-border
+.border-right
+  border-right: $default-border
+.border-bottom
+  border-bottom: $default-border
+.border-top
+  border-top: $default-border
+.border
+  border: $default-border
+.padding-5
+  padding: 5px
+.padding-8
+  padding: 8px
+.italics
+  font-style: italic
+.gray-text
+  color: darken($gray, 40)
+.truncate
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+.space-left
+  margin-left: 5px
+.space-right
+  margin-right: 5px
+@for $i from 1 through 12
+  .flex-#{$i}
+    flex: #{$i}
