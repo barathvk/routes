@@ -1,0 +1,66 @@
+.left-sidebar
+  width: 20%
+  border-right: $default-border
+.routes
+  overflow-y: auto
+  .add-route
+    .pt-button
+      &.pt-intent-primary
+        font-size: 0.9em
+        height: 20px
+        min-height: 0
+        line-height: 0.8em
+        margin-left: 8px
+        &.pt-minimal
+          height: 24px
+  .route
+    border-bottom: $default-border
+    &.active
+      background-color: $light-gray4
+    .pt-tag
+      min-width: 44px
+      display: flex
+      flex-direction: row
+      align-items: center
+      justify-content: center
+      margin-right: 6px
+    input
+      border: none
+      padding: 4px 8px
+      height: 30px
+      &:focus
+        outline: none
+  a.route
+    padding: 2px 3px 2px 8px
+    border-bottom: $default-border
+    transition: $transition
+    &:hover
+      text-decoration: none
+      color: $primary
+      background-color: $light-gray4
+    .pt-button
+      font-size: 0.9em
+      transition: $transition
+      display: flex
+      flex-direction: row
+      align-items: center
+      margin-left: 5px
+      line-height: 0.9em
+      min-height: 20px
+      box-shadow: none
+      min-width: 0
+      padding: 4px
+.bottom-row
+  height: 25%
+  border-top: $default-border
+.pt-popover-content
+  h4
+    margin-bottom: 8px
+.data
+  height: 30%
+  border-top: $default-border
+  overflow: auto
+.header
+  padding: 4px 8px
+  background-color: $light-gray3
+  border-bottom: $default-border

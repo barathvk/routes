@@ -1,4 +1,4 @@
-const Joi = require('joi')
+const Joi = require('joi-browser')
 const Parser = require('./parser')
 const _ = require('lodash')
 const outdent = require('outdent')
@@ -8,9 +8,9 @@ class Router {
     const validator = Joi.object().keys({
       routes: Joi.array().items(
         Joi.object().keys({
-          path: Joi.string().required(),
+          path: Joi.string().required().min(1).regex(/^\/.*/),
           method: Joi.string().required().valid('GET', 'POST', 'PUT', 'DELETE'),
-          schema: Joi.object().when('method', {is: 'GET', otherwise: Joi.required()}),
+          schema: Joi.object(),
           contentType: Joi.string().valid('application/json', 'text/plain').when('method', {is: 'GET', otherwise: Joi.required()})
         })
       ).required()

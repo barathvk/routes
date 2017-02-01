@@ -2,6 +2,27 @@
 # yarn lockfile v1
 
 
+"@blueprintjs/core@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.npmjs.org/@blueprintjs/core/-/core-1.7.0.tgz#849515e8701d03a204e4bb1a3134cc762ccbca29"
+  dependencies:
+    "@types/dom4" "^1.5.20"
+    "@types/tether" "^1.1.27"
+    classnames "^2.2"
+    dom4 "^1.8"
+    normalize.css "4.1.1"
+    pure-render-decorator "^1.1"
+    tether "^1.4"
+    tslib "^1.5.0"
+
+"@types/dom4@^1.5.20":
+  version "1.5.20"
+  resolved "https://registry.npmjs.org/@types/dom4/-/dom4-1.5.20.tgz#ccf636d3b794fe65a4191ebc7ff979a78efea6c2"
+
+"@types/tether@^1.1.27":
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/@types/tether/-/tether-1.4.0.tgz#163da2117430b3a1b89550cc0b82255c036a87d2"
+
 abbrev@1:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
@@ -1334,7 +1355,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.5:
+classnames@^2.2, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -1943,6 +1964,10 @@ dom-serializer@0:
     domelementtype "~1.1.1"
     entities "~1.1.1"
 
+dom4@^1.8:
+  version "1.8.3"
+  resolved "https://registry.npmjs.org/dom4/-/dom4-1.8.3.tgz#2b0aa096b46368e33bbd2c2767f0e32dbb3394cd"
+
 domain-browser@^1.1.1:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
@@ -2451,7 +2476,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.1, fbjs@^0.8.4:
+fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.4:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.8.tgz#02f1b6e0ea0d46c24e0b51a2d24df069563a5ad6"
   dependencies:
@@ -3003,14 +3028,9 @@ he@1.1.x:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.0.tgz#29319d49beec13a9b1f3c4f9b2a6dde4859bb2a7"
 
-history@^3.0.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/history/-/history-3.2.1.tgz#71c7497f4e6090363d19a6713bb52a1bfcdd99aa"
-  dependencies:
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    query-string "^4.2.2"
-    warning "^3.0.0"
+highlight.js@^9.6.0:
+  version "9.9.0"
+  resolved "https://registry.npmjs.org/highlight.js/-/highlight.js-9.9.0.tgz#b9995dcfdc2773e307a34f0460d92b9a474782c0"
 
 hoek@2.x.x:
   version "2.16.3"
@@ -3271,7 +3291,7 @@ interpret@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.1.tgz#d579fb7f693b858004947af39fa0db49f795602c"
 
-invariant@^2.2.0, invariant@^2.2.1:
+invariant@^2.2.0:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -3574,6 +3594,10 @@ jodid25519@^1.0.0:
   resolved "https://registry.yarnpkg.com/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
   dependencies:
     jsbn "~0.1.0"
+
+joi-browser@^10.0.6:
+  version "10.0.6"
+  resolved "https://registry.npmjs.org/joi-browser/-/joi-browser-10.0.6.tgz#2079c3fd845a886fc7ec5ce7c3f57422fbbdaa05"
 
 joi@^10.2.0:
   version "10.2.0"
@@ -3965,7 +3989,7 @@ longest@^1.0.0, longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
   dependencies:
@@ -4396,6 +4420,10 @@ normalize-url@^1.4.0:
     prepend-http "^1.0.0"
     query-string "^4.1.0"
     sort-keys "^1.0.0"
+
+normalize.css@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npmjs.org/normalize.css/-/normalize.css-4.1.1.tgz#4f0b1d5a235383252b04d8566b866cc5fcad9f0c"
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -5047,6 +5075,12 @@ punycode@^1.2.4, punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
+pure-render-decorator@^1.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/pure-render-decorator/-/pure-render-decorator-1.2.1.tgz#568870eeca17a1cee536b4fe94a3477fcd31eeb9"
+  dependencies:
+    fbjs "^0.8.0"
+
 q@^1.1.2:
   version "1.4.1"
   resolved "https://registry.npmjs.org/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
@@ -5059,7 +5093,7 @@ qs@~6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.0.tgz#f403b264f23bc01228c74131b407f18d5ea5d442"
 
-query-string@^4.1.0, query-string@^4.2.2:
+query-string@^4.1.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.3.1.tgz#54baada6713eafc92be75c47a731f2ebd09cd11d"
   dependencies:
@@ -5117,13 +5151,21 @@ react-addons-css-transition-group@^15.4.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-dom@^15.4.2:
+"react-dom@^0.14.0 || ^15.0.0", react-dom@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
   dependencies:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react-highlight@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npmjs.org/react-highlight/-/react-highlight-0.9.0.tgz#d5edee744ccb8689f7938794b6a1b554bb150eb7"
+  dependencies:
+    highlight.js "^9.6.0"
+    react "^0.14.0 || ^15.0.0"
+    react-dom "^0.14.0 || ^15.0.0"
 
 react-hot-api@^0.4.5:
   version "0.4.7"
@@ -5136,21 +5178,11 @@ react-hot-loader@^1.3.1:
     react-hot-api "^0.4.5"
     source-map "^0.4.4"
 
-react-router@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.0.2.tgz#5a19156678810e01d81901f9c0fef63284b8a514"
-  dependencies:
-    history "^3.0.0"
-    hoist-non-react-statics "^1.2.0"
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    warning "^3.0.0"
-
 react-timeago@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-3.1.3.tgz#8ebefed9757dd48eb0c64642ae4f94930b579d9f"
 
-react@^15.4.1:
+"react@^0.14.0 || ^15.0.0", react@^15.4.1:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
@@ -5970,6 +6002,10 @@ tempfile@^1.0.0:
     os-tmpdir "^1.0.0"
     uuid "^2.0.1"
 
+tether@^1.4:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/tether/-/tether-1.4.0.tgz#0f9fa171f75bf58485d8149e94799d7ae74d1c1a"
+
 text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
@@ -6082,6 +6118,10 @@ trim-repeated@^1.0.0:
 tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
+
+tslib@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-1.5.0.tgz#3bb50f871e5fdf9a4555a9ff237b730860048fea"
 
 tty-browserify@0.0.0:
   version "0.0.0"
@@ -6363,12 +6403,6 @@ ware@^1.2.0:
   resolved "https://registry.yarnpkg.com/ware/-/ware-1.3.0.tgz#d1b14f39d2e2cb4ab8c4098f756fe4b164e473d4"
   dependencies:
     wrap-fn "^0.1.0"
-
-warning@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
-  dependencies:
-    loose-envify "^1.0.0"
 
 watchpack@^1.2.0:
   version "1.2.0"

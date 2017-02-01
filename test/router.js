@@ -112,9 +112,6 @@ describe('With Router', () => {
         }
         assert.deepEqual(route, expected)
       })
-      it('should fail on no POST schema', () => {
-        assert.throws(() => { new Router(schemas.noSchema) }, /child "routes" fails because/)
-      })
       it('Should process POST requests with JSON data', () => {
         const router = new Router(schemas.valid)
         const route = router.parse('POST /data', { hello: 'world' })

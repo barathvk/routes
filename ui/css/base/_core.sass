@@ -2,9 +2,10 @@ $gray: #f5f8fa
 $blue: #137cbd
 $yellow: #E8F9B6
 $primary: #5c7080
-$default-border-color: darken($gray, 10)
+$default-border-color: darken($gray, 20)
 $default-border: 1px solid $default-border-color
 $transition: all 0.3s ease-in-out
+$base-font: Roboto !important
 html, body
   padding: 0
   margin: 0
@@ -13,7 +14,7 @@ html, body
   display: flex
   flex-direction: column
   flex: 1
-  font-family: Roboto, Open Sans
+  font-family: $base-font
   background-color: $gray
   color: $primary
   transition: $transition
@@ -31,6 +32,12 @@ html, body
 .flex-center
   justify-content: center
   align-items: center
+.pt-button
+  font-family: $base-font
+.pt-icon-standard
+  margin-right: 5px
+  &.icon-only
+    margin-right: 0
 h1, h2, h3, h4, h5, h6
   margin: 0
   padding: 0
@@ -71,3 +78,11 @@ h1, h2, h3, h4, h5, h6
 @for $i from 1 through 12
   .flex-#{$i}
     flex: #{$i}
+.pt-button
+  &:focus
+    outline-color: transparent
+pre
+  margin: 0
+  padding: 0
+  display: flex
+  flex: 1

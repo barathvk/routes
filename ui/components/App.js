@@ -1,4 +1,7 @@
 import { inject, observer } from 'mobx-react'
+import Data from './Data'
+import Routes from './Routes'
+import Visualization from './Visualization'
 @inject('store') @observer
 export default class App extends React.Component {
   constructor(props) {
@@ -6,10 +9,13 @@ export default class App extends React.Component {
     this.state = {}
   }
   render() {
-    const store = this.props.store
     return (
-      <div>
-        <h1>{store.message}</h1>
+      <div className='fill flex-row'>
+        <div className='flex-column left-sidebar'>
+          <Routes/>
+          <Data/>
+        </div>
+        <Visualization/>
       </div>
     )
   }
