@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 module.exports = {
   entry: {
-    bundle: [path.resolve(__dirname, './src/js/core.js')]
+    bundle: [path.resolve(__dirname, './ui/js/core.js')]
   },
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.js'],
@@ -47,7 +47,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       hash: false,
-      template: 'src/index.html'
+      template: 'ui/index.html'
     }),
     new webpack.ProvidePlugin({
       React: 'react',
