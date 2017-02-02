@@ -18,7 +18,6 @@ export default class App extends React.Component {
           <Schema/>
           <Data/>
         </div>
-        <Visualization/>
         {
           this.props.store.showTodo && (
             <div className='flex-column right-sidebar'>
@@ -26,6 +25,7 @@ export default class App extends React.Component {
             </div>
           )
         }
+        <Visualization/>
       </div>
     )
   }

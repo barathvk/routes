@@ -5,7 +5,7 @@
 .right-sidebar
   transition: $transition
   width: 300px
-  border-left: $default-border
+  border-right: $default-border
 .routes
   overflow-y: auto
   overflow-x: hidden
@@ -21,7 +21,7 @@
           height: 24px
   .route
     border-bottom: $default-border
-    min-height: 29px
+    min-height: 31px
     &.active
       background-color: $light-gray4
     .pt-tag
@@ -91,7 +91,7 @@
         flex: 6
         border-radius: 2px
         padding: 4px 8px
-        border: $default-border        
+        border: $default-border
         margin-top: 4px
   label
     min-width: 85px
@@ -106,11 +106,17 @@
 .data
   height: 30%
   border-top: $default-border
-  overflow: auto
 .header
   padding: 4px 8px
   background-color: $light-gray3
   border-bottom: $default-border
+  min-height: 30px
+  .pt-button
+    min-height: 20px
+    line-height: 20px
+    font-size: 12px
+    &::before
+      font-size: 12px
 .pt-input
   box-shadow: none
   border: $default-border
@@ -124,9 +130,7 @@
   position: absolute
   right: 10px
   top: 10px
-  &.shown
-    right: 310px
-.highlight
+.highlight-param
   padding: 0 3px
   background-color: $orange5
   border: $default-border

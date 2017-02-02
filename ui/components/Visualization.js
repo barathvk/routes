@@ -6,7 +6,7 @@ export default class Visualization extends React.Component {
     super(props)
     this.state = {}
     this.toggleTodo = () => {
-      this.props.store.showTodo = !this.props.store.showTodo
+      this.props.store.toggleTodo()
     }
   }
   componentDidMount() {

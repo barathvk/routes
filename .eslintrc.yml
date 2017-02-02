@@ -3,6 +3,7 @@ extends:
 env:
   browser: true
 globals:
+  __dirname: true
   React: true
   ReactDOM: true
   axios: true
@@ -72,3 +73,7 @@ rules:
   curly:
     - 2
     - multi
+  no-nested-ternary:
+    - 0
+  no-case-declarations:
+    - 0

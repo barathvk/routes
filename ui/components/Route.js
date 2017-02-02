@@ -1,12 +1,9 @@
 import { inject, observer } from 'mobx-react'
 import Dropdown from './util/Dropdown'
 import Form from 'react-json-editor'
-import 'brace'
-import AceEditor from 'react-ace'
-import 'brace/mode/json'
-import 'brace/theme/github'
 import { Intent } from '@blueprintjs/core'
 const methods = ['GET', 'POST', 'PUT', 'DELETE']
+import Monaco from 'react-monaco-editor'
 const contentTypes = ['application/json', 'text/plain']
 @inject('store') @observer
 export default class Route extends React.Component {
@@ -14,7 +11,7 @@ export default class Route extends React.Component {
     super(props)
     this.state = {
       params: {},
-      schema: null
+      schema: this.props.route.schema
     }
     this.saveSchema = () => {
       const route = _.first(this.props.store.schema.routes.filter(f => f === this.props.route))
@@ -48,7 +45,7 @@ export default class Route extends React.Component {
         path = path.replace(`:${p}`, this.state.params[p])
       })
       if (this.state.params.query) path += `?${this.state.params.query}`
-      const data = this.refs.dataForm ? this.refs.dataForm.state.output : null
+      const data = this.refs.dataForm && this.refs.dataForm.state.output ? this.refs.dataForm.state.output : route.method !== 'GET' ? {} : null
       this.props.store.run(`${route.method} ${path}`, data)
     }
     this.setParam = (e, f) => {
@@ -62,10 +59,36 @@ export default class Route extends React.Component {
       }
       catch (err) {}
     }
+    this.onOpenRunner = () => {
+      setTimeout(() => {
+        this.load()
+      }, 300)
+    }
+    this.load = () => {
+      const e = this.refs.editor
+      if (e && e.editor) {
+        const options = {
+          selectOnLineNumbers: true,
+          roundedSelection: false,
+          readOnly: false,
+          disabled: true,
+          theme: 'vs',
+          cursorStyle: 'line',
+          automaticLayout: true,
+          tabSize: 2,
+          insertSpaces: true,
+          fontSize: 11,
+          detectIndentation: false,
+          cursorBlinking: 'smooth'
+        }
+        e.editor.updateOptions(options)
+        e.editor.setValue(this.state.schema ? JSON.stringify(this.state.schema, null, 2) : null)
+      }
+    }
   }
   render() {
     const parts = this.props.route.path.split('/').filter(p => p !== '')
-    const html = parts.length > 0 ? `/${parts.map(p => p.indexOf(':') === 0 ? `<span class='highlight'>${p}</span>` : p).join('/')}` : this.props.route.path
+    const html = parts.length > 0 ? `/${parts.map(p => p.indexOf(':') === 0 ? `<span class='highlight-param'>${p}</span>` : p).join('/')}` : this.props.route.path
     let parsed
     try {
       parsed = this.props.store.router.parse(`${this.props.route.method} ${this.props.route.path}`)
@@ -87,7 +110,7 @@ export default class Route extends React.Component {
           )
         }
         <div className='route-menu flex-row flex-center-align animated slideInRight'>
-          <Dropdown icon='cog' onClose={this.saveSchema}>
+          <Dropdown icon='cog' onClose={this.saveSchema} onOpen={this.onOpenRunner}>
             <h4 className='flex-row flex-center'><span className='pt-icon-standard pt-icon-cog'/>Settings</h4>
             <div className='flex-row flex-center-align'>
               <label className='flex-1 pt-label space-right'>Path</label>
@@ -125,7 +148,16 @@ export default class Route extends React.Component {
               this.props.route.method !== 'GET' && this.props.route.contentType === 'application/json' && parsed.schema && (
                 <div className='flex-column fill data-editor'>
                   <div className='header flex-row flex-center'>Schema</div>
-                  <AceEditor mode='json' theme='github' editorProps={{$blockScrolling: true}} defaultValue={JSON.stringify(parsed.schema, null, 2)} value={JSON.stringify(this.state.schema, null, 2)} onChange={this.setSchema} className='fill' height='400px' width='100%'/>
+                  <Monaco
+                    width='100%'
+                    height={400}
+                    language='json'
+                    fontSize={11}
+                    defaultValue=''
+                    tabSize={2}
+                    onChange={this.setSchema}
+                    ref='editor'
+                  />
                 </div>
               )
             }

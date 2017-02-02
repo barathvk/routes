@@ -1,13 +1,36 @@
 import { inject, observer } from 'mobx-react'
-import 'brace'
-import AceEditor from 'react-ace'
-import 'brace/mode/json'
-import 'brace/theme/github'
+import Monaco from 'react-monaco-editor'
 @inject('store') @observer
 export default class Schema extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
+    this.load = () => {
+      const e = this.refs.editor
+      if (e && e.editor) {
+        const options = {
+          selectOnLineNumbers: true,
+          roundedSelection: false,
+          readOnly: true,
+          disabled: true,
+          theme: 'vs',
+          cursorStyle: 'line',
+          automaticLayout: true,
+          tabSize: 2,
+          insertSpaces: true,
+          detectIndentation: false,
+          cursorBlinking: 'expand',
+          fontSize: 11
+        }
+        e.editor.updateOptions(options)
+        e.editor.setValue(this.props.store.schema ? JSON.stringify(this.props.store.schema, null, 2) : '')
+      }
+    }
+  }
+  componentDidUpdate() {
+    setTimeout(() => {
+      this.load()
+    }, 500)
   }
   render() {
     return (
@@ -16,7 +39,16 @@ export default class Schema extends React.Component {
           <span className='pt-icon-standard pt-icon-code'/>
           Schema
         </div>
-        <AceEditor mode='json' theme='github' editorProps={{$blockScrolling: true}} value={JSON.stringify(this.props.store.schema, null, 2)} className='fill' height='100%' width='100%' readOnly/>
+        <Monaco
+          width='100%'
+          height='100%'
+          language='json'
+          fontSize={11}
+          readOnly={true}
+          value={this.props.store.schema ? JSON.stringify(this.props.store.schema, null, 2) : ''}
+          editorDidMount={this.load}
+          ref='editor'
+        />
       </div>
     )
   }

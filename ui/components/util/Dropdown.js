@@ -6,7 +6,7 @@ export default class Dropdown extends React.Component {
   }
   render() {
     return (
-      <Popover content={this.props.children} interactionKind={PopoverInteractionKind.CLICK} position={Position.BOTTOM} useSmartPositioning={true} popoverClassName='pt-popover-content-sizing' popoverWillClose={this.props.onClose}>
+      <Popover content={this.props.children} interactionKind={PopoverInteractionKind.CLICK} position={Position.BOTTOM} useSmartPositioning={false} popoverClassName='pt-popover-content-sizing' popoverWillClose={this.props.onClose} popoverDidOpen={this.props.onOpen}>
         <button className={`pt-button pt-minimal pt-icon-${this.props.icon} ${this.props.intent ? `pt-intent-${this.props.intent}` : ''}`} disabled={this.props.disabled}/>
       </Popover>
     )

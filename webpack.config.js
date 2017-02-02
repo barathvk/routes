@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   entry: {
     bundle: [path.resolve(__dirname, './ui/js/core.js')]
@@ -56,6 +57,12 @@ module.exports = {
       ReactDOM: 'react-dom',
       axios: 'axios'
     }),
+    new CopyWebpackPlugin([
+      {
+        from: 'node_modules/monaco-editor/min/vs',
+        to: 'vs'
+      }
+    ]),
     new webpack.LoaderOptionsPlugin({
       options: {
         sassLoader: {

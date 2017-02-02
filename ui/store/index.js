@@ -9,13 +9,63 @@ export default class {
   })
   @observable backup
   @observable router
-  @observable showTodo
+  @observable showTodo = ls.get('todo')
   @observable result
+  @observable toggling = false
   @observable todos = new TodoStore()
-  @observable schema = ls.get('schema') || {
+  @action toggleTodo() {
+    this.toggling = true
+    this.showTodo = !this.showTodo
+    ls.set('todo', this.showTodo)
+    if (this.showTodo) {
+      const sch = require('../js/todoschema.json')
+      this.schema = sch
+    }
+    else {
+      const sch = ls.get('schema') || {
+        routes: [
+          {
+            path: '/',
+            method: 'GET',
+            contentType: ''
+          },
+          {
+            path: '/hello',
+            method: 'GET',
+            contentType: ''
+          },
+          {
+            path: '/hello/:id',
+            method: 'POST',
+            contentType: 'application/json',
+            schema: {
+              type: 'object',
+              title: 'Data',
+              properties: {
+                name: {
+                  title: 'name',
+                  type: 'string',
+                  required: true
+                }
+              }
+            }
+          }
+        ]
+      }
+      this.schema = sch
+    }
+    this.toggling = false
+    this.load()
+  }
+  @observable schema = this.showTodo ? require('../js/todoschema.json') : ls.get('schema') || {
     routes: [
       {
         path: '/',
+        method: 'GET',
+        contentType: ''
+      },
+      {
+        path: '/hello',
         method: 'GET',
         contentType: ''
       },
@@ -40,7 +90,6 @@ export default class {
   @action load() {
     try {
       this.router = new Router(mobx.toJS(this.schema))
-      if (!this.showTodo) ls.set('schema', this.schema)
     }
     catch (err) {
       this.schema = _.clone(mobx.toJS(this.backup))
