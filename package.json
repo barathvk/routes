@@ -18,7 +18,8 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js -p",
     "start": "cross-env NODE_ENV=production serve build -s -c -p 3000",
     "test": "mocha",
-    "test:watch": "nodemon --exec mocha"
+    "test:watch": "nodemon --exec mocha",
+    "deploy": "surge --domain routes.barath.ga --project build"
   },
   "dependencies": {
     "@blueprintjs/core": "^1.7.0",
