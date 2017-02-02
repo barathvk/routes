@@ -69,6 +69,10 @@ export default class Route extends React.Component {
     let parsed
     try {
       parsed = this.props.store.router.parse(`${this.props.route.method} ${this.props.route.path}`)
+      if (this.props.route.method !== 'GET' && this.props.route.contentType === 'application/json' && !parsed.schema) parsed.schema = {
+        type: 'object',
+        properties: {}
+      }
     }
     catch (err) {
       this.props.store.Toast.show({message: err.message, intent: Intent.DANGER})

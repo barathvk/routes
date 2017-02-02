@@ -1,5 +1,6 @@
 import mobx, { observable, action } from 'mobx'
 import Router from '../../router'
+import TodoStore from './todo'
 import { Position, Toaster, Intent } from '@blueprintjs/core'
 import ls from 'store'
 export default class {
@@ -10,6 +11,7 @@ export default class {
   @observable router
   @observable showTodo
   @observable result
+  @observable todos = new TodoStore()
   @observable schema = ls.get('schema') || {
     routes: [
       {

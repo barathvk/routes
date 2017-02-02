@@ -1,0 +1,66 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "method": "GET",
+      "contentType": ""
+    },
+    {
+      "method": "POST",
+      "path": "/:id",
+      "contentType": "application/json",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "title",
+            "required": true
+          },
+          "description": {
+            "type": "string",
+            "title": "description",
+            "required": true
+          },
+          "complete": {
+            "title": "complete",
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/:id"
+    },
+    {
+      "method": "DELETE",
+      "path": "/:id",
+      "contentType": "application/json"
+    },
+    {
+      "method": "PUT",
+      "path": "/",
+      "contentType": "application/json",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "title",
+            "required": true
+          },
+          "description": {
+            "type": "string",
+            "title": "description",
+            "required": true
+          },
+          "complete": {
+            "title": "complete",
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  ]
+}
