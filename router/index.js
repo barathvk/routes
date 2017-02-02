@@ -11,7 +11,7 @@ class Router {
           path: Joi.string().required().min(1).regex(/^\/.*/),
           method: Joi.string().required().valid('GET', 'POST', 'PUT', 'DELETE'),
           schema: Joi.object(),
-          contentType: Joi.string().valid('application/json', 'text/plain').when('method', {is: 'GET', otherwise: Joi.required()})
+          contentType: Joi.string().valid('application/json', 'text/plain').when('method', {is: 'GET', then: '', otherwise: Joi.required()})
         })
       ).required()
     })
@@ -53,7 +53,7 @@ class Router {
       })
       result.params = validparams
     }
-    if (p.data && p.method !== 'GET') {
+    if (result.schema && p.method !== 'GET') {
       const v = new Validator()
       const valid = v.validate(p.data, result.schema)
       if (valid.errors.length > 0) throw new Error(valid.errors[0].stack)

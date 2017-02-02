@@ -7,13 +7,11 @@ import { autorun } from 'mobx'
 import WebFont from 'webfontloader'
 WebFont.load({
   google: {
-    families: ['Roboto:200,300,400,600']
+    families: ['Roboto:400,500,600']
   },
   active: () => {
     const store = new Store()
-    autorun(() => {
-      store.load()
-    })
+    store.load()
     ReactDOM.render(
       <Provider store={store}>
         <App/>

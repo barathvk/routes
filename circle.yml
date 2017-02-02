@@ -1,0 +1,6 @@
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm run build
+      - surge --domain routes.barath.ga --project build

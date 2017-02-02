@@ -1,38 +1,58 @@
 import mobx, { observable, action } from 'mobx'
 import Router from '../../router'
 import { Position, Toaster, Intent } from '@blueprintjs/core'
-const Toast = Toaster.create({
-  position: Position.TOP
-})
+import ls from 'store'
 export default class {
-  @observable url = '/'
-  @observable method = 'GET'
+  Toast = Toaster.create({
+    position: Position.TOP
+  })
   @observable backup
-  @observable schema = {
+  @observable router
+  @observable showTodo
+  @observable result
+  @observable schema = ls.get('schema') || {
     routes: [
       {
         path: '/',
-        method: 'GET'
+        method: 'GET',
+        contentType: ''
+      },
+      {
+        path: '/hello/:id',
+        method: 'POST',
+        contentType: 'application/json',
+        schema: {
+          type: 'object',
+          title: 'Data',
+          properties: {
+            name: {
+              title: 'name',
+              type: 'string',
+              required: true
+            }
+          }
+        }
       }
     ]
   }
-  @observable result
   @action load() {
     try {
-      const router = new Router(mobx.toJS(this.schema))
-      this.result = router.parse(`${this.method} ${this.url}`)
+      this.router = new Router(mobx.toJS(this.schema))
+      if (!this.showTodo) ls.set('schema', this.schema)
     }
     catch (err) {
-      console.error(err)
       this.schema = _.clone(mobx.toJS(this.backup))
-      this.result = null
-      Toast.show({message: err.message, intent: Intent.DANGER})
+      this.Toast.show({message: err.message, intent: Intent.DANGER})
+      this.load()
     }
   }
-  @action select(r) {
-    this.url = r.path
-    this.method = r.method
-    this.load()
+  @action run(command, data) {
+    try {
+      this.result = this.router.parse(command, data)
+    }
+    catch (err) {
+      this.Toast.show({message: err.message, intent: Intent.DANGER})
+    }
   }
   @action remove(route) {
     this.backup = this.schema
@@ -41,8 +61,12 @@ export default class {
     this.load()
   }
   @action add(route) {
-    this.backup = _.clone(mobx.toJS(this.schema))
-    this.schema.routes.push(route)
-    this.load()
+    const exists = _.first(this.schema.routes.filter(r => route.method === r.method && route.path === r.path))
+    if (!exists) {
+      this.backup = _.clone(mobx.toJS(this.schema))
+      this.schema.routes.push(route)
+      this.load()
+    }
+    else this.Toast.show({message: 'This route has already been defined', intent: Intent.DANGER})
   }
 }

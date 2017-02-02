@@ -2,6 +2,7 @@ import { inject, observer } from 'mobx-react'
 import Data from './Data'
 import Routes from './Routes'
 import Visualization from './Visualization'
+import TodoApp from './TodoApp'
 @inject('store') @observer
 export default class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,13 @@ export default class App extends React.Component {
           <Data/>
         </div>
         <Visualization/>
+        {
+          this.props.store.showTodo && (
+            <div className='flex-column right-sidebar'>
+              <TodoApp/>
+            </div>
+          )
+        }
       </div>
     )
   }

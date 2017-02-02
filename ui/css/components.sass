@@ -1,8 +1,14 @@
 .left-sidebar
   width: 20%
+  min-width: 500px
   border-right: $default-border
+.right-sidebar
+  transition: $transition
+  width: 300px
+  border-left: $default-border
 .routes
   overflow-y: auto
+  overflow-x: hidden
   .add-route
     .pt-button
       &.pt-intent-primary
@@ -15,6 +21,7 @@
           height: 24px
   .route
     border-bottom: $default-border
+    min-height: 29px
     &.active
       background-color: $light-gray4
     .pt-tag
@@ -54,8 +61,48 @@
   height: 25%
   border-top: $default-border
 .pt-popover-content
+  .params
+    padding: 4px
+  form
+    padding: 4px
+    >p
+      display: none
+    >fieldset
+      border: none
+    .form-section
+      padding: 0
+      margin: 0
+    .form-section-title
+      display: none
+    .form-element
+      display: flex
+      flex-direction: row
+      align-items: center
+      label
+        flex: 1
+        min-width: 40px
+        margin-right: 8px
+        font-weight: bold
+        line-height: 1em
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+      input
+        flex: 6
+        border-radius: 2px
+        padding: 4px 8px
+        border: $default-border        
+        margin-top: 4px
+  label
+    min-width: 85px
+  .data-wrapper
+    border: $default-border
+    margin-bottom: -1px
   h4
-    margin-bottom: 8px
+    margin-bottom: 12px
+    padding-bottom: 4px
+  .pt-button-group
+    margin-top: 4px
 .data
   height: 30%
   border-top: $default-border
@@ -64,3 +111,45 @@
   padding: 4px 8px
   background-color: $light-gray3
   border-bottom: $default-border
+.pt-input
+  box-shadow: none
+  border: $default-border
+  border-radius: 2px
+  &:focus
+    outline: none
+    box-shadow: none
+.pt-label
+  font-weight: bold
+.show-todo
+  position: absolute
+  right: 10px
+  top: 10px
+  &.shown
+    right: 310px
+.highlight
+  padding: 0 3px
+  background-color: $orange5
+  border: $default-border
+  border-color: $orange3
+  margin: 0 2px
+  border-radius: 3px
+  font-weight: 500
+  color: $gray1
+.run
+  label
+    min-width: 40px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+  input
+    margin-bottom: 4px
+.data-header
+  border-bottom: $default-border
+  padding: 4px 8px
+  background-color: $light-gray4
+.data-editor
+  .header
+    background-color: $light-gray4
+    border-bottom: $default-border
+  margin-top: 4px
+  border: $default-border

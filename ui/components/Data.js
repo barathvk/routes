@@ -1,6 +1,9 @@
 import { inject, observer } from 'mobx-react'
 import 'highlight.js/styles/gruvbox-dark.css'
-import Highlight from 'react-highlight'
+import 'brace'
+import AceEditor from 'react-ace'
+import 'brace/mode/json'
+import 'brace/theme/github'
 @inject('store') @observer
 export default class Data extends React.Component {
   constructor(props) {
@@ -12,9 +15,9 @@ export default class Data extends React.Component {
       <div className='flex-column data'>
         <div className='flex-row flex-center-align header'>
           <span className='pt-icon-standard pt-icon-code'/>
-          Data
+          Results
         </div>
-        <Highlight className='fill json'>{this.props.store.result ? JSON.stringify(this.props.store.result, null, 2) : null}</Highlight>
+        <AceEditor mode='json' theme='github' editorProps={{$blockScrolling: true}} value={JSON.stringify(this.props.store.result, null, 2)} className='fill' height='100%' width='100%' readOnly/>
       </div>
     )
   }
