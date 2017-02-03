@@ -23,7 +23,7 @@ export default class {
       this.schema = sch
     }
     else {
-      const sch = ls.get('schema') || {
+      const sch = {
         routes: [
           {
             path: '/',
@@ -58,7 +58,7 @@ export default class {
     this.toggling = false
     this.load()
   }
-  @observable schema = this.showTodo ? require('../js/todoschema.json') : ls.get('schema') || {
+  @observable schema = this.showTodo ? require('../js/todoschema.json') : {
     routes: [
       {
         path: '/',
