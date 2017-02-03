@@ -1,3 +1,7 @@
+# Demo
+
+A demo is available at [routes.barath.ga](http://routes.barath.ga)
+
 # Simple Router Implementation
 The router code can be found in the [router](https://github.com/barathvk/routes/tree/master/router) folder. Tests can be found in the [test](https://github.com/barathvk/routes/tree/master/test) folder.
 
