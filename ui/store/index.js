@@ -3,6 +3,7 @@ import Router from '../../router'
 import TodoStore from './todo'
 import { Position, Toaster, Intent } from '@blueprintjs/core'
 import ls from 'store'
+import pubsub from 'pubsub-js'
 export default class {
   Toast = Toaster.create({
     position: Position.TOP
@@ -100,6 +101,7 @@ export default class {
   @action run(command, data) {
     try {
       this.result = this.router.parse(command, data)
+      pubsub.publish('router', this.result)
     }
     catch (err) {
       this.Toast.show({message: err.message, intent: Intent.DANGER})

@@ -15,13 +15,36 @@ export default class TodoApp extends React.Component {
       this.state.newtask = {}
       this.setState(this.state)
     }
+    this.toggleDone = t => {
+      t.done = !t.done
+      this.props.store.todos.save(t)
+      setTimeout(() => {
+        this.clear()
+      })
+    }
+    this.save = () => {
+      this.props.store.todos.save(this.state.newtask)
+      this.clear()
+    }
     this.clear = () => {
       this.state.newtask = {}
+      this.props.store.todos.selected = null
       this.setState(this.state)
     }
     this.edit = t => {
-      console.log(t)
+      this.props.store.todos.selected = t
+      this.state.newtask = t
+      this.setState(this.state)
     }
+    this.delete = t => {
+      this.props.store.todos.delete(t)
+      setTimeout(() => {
+        this.clear()
+      })
+    }
+  }
+  componentDidMount() {
+    this.props.store.todos.load()
   }
   render() {
     const store = this.props.store.todos
@@ -36,7 +59,7 @@ export default class TodoApp extends React.Component {
             </div>
             <textarea rows={2} type='text' placeholder='Description' className='pt-input' value={this.state.newtask.description || ''} onChange={this.setNewTaskProp.bind(this, 'description')}/>
             <div className='pt-button-group pt-fill pt-minimal'>
-              <button className='pt-button pt-intent-primary pt-icon-add' onClick={this.add}>Add Task</button>
+              <button className={`pt-button pt-intent-primary pt-icon-${store.selected ? 'floppy-disk' : 'add'}`} onClick={store.selected ? this.save : this.add}>{store.selected ? 'Save' : 'Add'} Task</button>
               <button className='pt-button pt-icon-cross' onClick={this.clear}>Clear</button>
             </div>
           </div>
@@ -46,12 +69,18 @@ export default class TodoApp extends React.Component {
                 {
                   store.tasks.map(t => {
                     return (
-                      <div className='flex-column todo-item pt-card pt-elevation-0 pt-interactive' key={t.id} onClick={this.edit.bind(this, t)}>
-                        <b className='flex-row flex-center-align todo-title'>
-                          <span className='pt-icon pt-icon-tag'/>
-                          <span>{t.title}</span>
-                        </b>
-                        <div className='description fill'>{t.description}</div>
+                      <div className={`flex-row flex-center-align todo-item pt-interactive ${store.selected === t ? 'pt-card pt-elevation-3' : 'pt-card pt-elevation-0'} ${t.done ? 'done' : ''}`} key={t.id} onClick={this.edit.bind(this, t)}>
+                        <div className='flex-column fill'>
+                          <b className='flex-row flex-center-align todo-title'>
+                            <span className='pt-icon pt-icon-tag'/>
+                            <span style={{textDecoration: `${t.done ? 'line-through' : 'none'}`}}>{t.title}</span>
+                          </b>
+                          <div className='description fill' style={{textDecoration: `${t.done ? 'line-through' : 'none'}`}}>{t.description}</div>
+                        </div>
+                        <div className='pt-button-group pt-minimal'>
+                          <button className={`pt-button ${t.done ? 'pt-intent-success pt-icon-tick' : 'pt-intent-danger pt-icon-circle'}`} onClick={this.toggleDone.bind(this, t)}/>
+                          <button className='pt-button pt-intent-danger pt-icon-remove' onClick={this.delete.bind(this, t)}/>
+                        </div>
                       </div>
                     )
                   })

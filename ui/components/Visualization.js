@@ -1,5 +1,6 @@
 import { inject, observer } from 'mobx-react'
 import Graph from 'react-graph-vis'
+import pubsub from 'pubsub-js'
 @inject('store') @observer
 export default class Visualization extends React.Component {
   constructor(props) {
@@ -9,12 +10,23 @@ export default class Visualization extends React.Component {
       this.props.store.toggleTodo()
     }
   }
+  componentWillUnmount() {
+    if (this.token) pubsub.unsubscribe(this.token)
+  }
   componentDidMount() {
     setTimeout(() => {
       const w = ReactDOM.findDOMNode(this).offsetWidth
       const h = ReactDOM.findDOMNode(this).offsetHeight
       this.state.dimensions = {w, h}
       this.setState(this.state)
+      this.token = pubsub.subscribe('router', (m, data) => {
+        const path = data.path
+        const method = data.method
+        const nodeid = `${path}_${method}`
+        const network = this.refs.graph.Network
+        network.unselectAll()
+        network.selectNodes([nodeid], true)
+      })
     }, 300)
     this.buildNodes = (nodes, edges, parent) => {
       const routes = this.props.store.schema.routes
@@ -99,11 +111,14 @@ export default class Visualization extends React.Component {
       return (
         <div className='fill flex-column viz flex-center' ref='container'>
           <Graph graph={graph} options={options} events={events} style={style} ref='graph'/>
-          <button className={`show-todo pt-button pt-intent-primary pt-icon-endorsed ${this.props.store.showTodo ? 'shown' : ''}`} onClick={this.toggleTodo}>
-            {
-              this.props.store.showTodo ? 'Close Todo List App' : 'Load Todo List App'
-            }
-          </button>
+          <div className='pt-button-group show-todo pt-minimal'>
+            <button className='pt-button pt-intent-primary pt-icon-endorsed' onClick={this.toggleTodo}>
+              {
+                this.props.store.showTodo ? 'Close Todo List App' : 'Load Todo List App'
+              }
+            </button>
+            <a href='http://github.com/barathvk/routes.git' target='_BLANK' className='pt-button pt-intent-success pt-icon-git-commit'>Github</a>
+          </div>
         </div>
       )
     }

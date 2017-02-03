@@ -48,6 +48,7 @@
     "monaco-editor": "http://github.com/jkillian/monaco-editor-dist.git",
     "node-sass": "^3.13.0",
     "outdent": "^0.3.0",
+    "pubsub-js": "^1.5.4",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
