@@ -15,3 +15,10 @@ The router has the following features:
     * Content type (application/json or text/plain)
     * Query string
     * Validation schema
+
+## Implementation Details
+
+# User Interface
+The user interface uses the above router to demonstrate the creation of a schema, manipulating routes, adn testing the routes. The user interface also has a sample Todo List application to demonstrate the usage of routes.
+
+For more information on the user interface please see the [wiki](https://github.com/barathvk/routes/wiki)
